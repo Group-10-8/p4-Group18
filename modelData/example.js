@@ -16,6 +16,7 @@ if (models === undefined) {
 
 models.exampleModel = function () {
   return {
-    name: "Unknown Name",
+    name: "Group 18 (Ben Taylor, Jordan Wise-Smith, Zack Brokaw, Kevin Richard, Rishi Jinwala)",
+    motto: "49ers Software Engineers!",
   };
 };

@@ -23,16 +23,20 @@ class Example extends React.Component {
     // We read the example model data into the state variable 'name'
     this.state = {
       name: window.models.exampleModel().name,
+      motto: window.models.exampleModel().motto,
       counter: 0,
       inputValue: '',
       buttonWasClicked: '',
     };
+
+    console.log('Name:', this.state.name, 'Motto:', this.state.motto);
 
     // React events are called directly from DOM event handlers
     // so we cannot directly call the methods of this class. We
     // generate new functions that handle the event by just calling
     // the method that handles the event.
     this.handleChangeBound = event => this.handleChange(event);
+    this.handleChangeMottoBound = event => this.handleChangeMotto(event)
     // Note: A commmon idiom in React code is to use JavaScript bind() to
     // smash the method to accomplish this passthrough to the method:
     //      this.handleChange = this.handleChange.bind(this);
@@ -51,7 +55,7 @@ class Example extends React.Component {
     const counterIncrFunc = () => this.setState({
       counter: this.state.counter + 1,
     });
-    this.timerID = setInterval(counterIncrFunc, 2 * 1000);
+    this.timerID = setInterval(counterIncrFunc, 1 * 1000);
 
     // Trigger the code coloring
     Prism.highlightAll();
@@ -67,6 +71,10 @@ class Example extends React.Component {
   // Method called when the input box is typed into.
   handleChange(event) {
     this.setState({ inputValue: event.target.value });
+  }
+
+  handleChangeMotto(event) {
+    this.setState({ motto: event.target.value });
   }
 
   // Method called when the button is pushed
@@ -103,7 +111,12 @@ class Example extends React.Component {
         <h1>Project 4 React.js Example</h1>
 
         <div className="motto-update">
-          {/* Your problem #1 motto displaying and updating widget goes here */}
+          <p>We are: "{this.state.name}"</p>
+          <p>Our motto: "{this.state.motto}"</p>
+          <div className="motto-update-input">
+            <p>Change Motto Here: </p>
+            <input type="text" value={this.state.motto} onChange={this.handleChangeMottoBound}/>
+          </div>
         </div>
 
         <p>
